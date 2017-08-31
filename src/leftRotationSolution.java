@@ -2,7 +2,8 @@ package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class leftRotationSolution {
