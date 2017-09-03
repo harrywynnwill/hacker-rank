@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class leftRotationSolution {
+public class LeftRotationSolution {
 
     public static int[] leftRotation(int[] a, int d) {
         IntStream stream1 = Arrays.stream(a).skip(d);

@@ -2,12 +2,15 @@ package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class sparseArraySolution {
+public class SparseArraySolution {
 
 
     public static int[] sparseArray() {
@@ -18,38 +21,59 @@ public class sparseArraySolution {
         File input = new File("input/input10.txt");
         Scanner in = new Scanner(input);
         int total = 0;
-        List n = new ArrayList();
-        List q = new ArrayList();
+        List nAndQ = new ArrayList();
         List inputArray = new ArrayList();
-        //use regex to pull out the numbers
-//            total += in.nextInt();
-        int num = 0;
         while (in.hasNextLine()) {
             if (in.hasNextInt()) {
-                n.add(Integer.parseInt(in.next()));
+                nAndQ.add(Integer.valueOf(in.nextInt()));
             } else {
                 inputArray.add(in.next());
             }
 
-//              in.nextLine();
-
-//                   if(in.hasNextInt()){
-//                       q.add(in.nextInt());
-//                   }
-//        int num2 = in.nextInt();
         }
 //            inputArray.add(in.next());
 
 //        n.stream().forEach(System.out::println);
 //        q.stream().forEach(System.out::println)
 
-
+        ArrayList n_q = new ArrayList();
+        List n = new ArrayList();
+        List q  = new ArrayList();
         int count = 0;
-        for (int i = 0; i < n.size(); i++) {
-            System.out.println(count);
-            System.out.println(inputArray.subList(count, count + (Integer) n.get(i)));
-            count += (int) n.get(i);
+        for (int i = 0; i < nAndQ.size(); i++) {
+                n_q.add(inputArray.subList(count, count + (int) nAndQ.get(i)));
+                count += (int) nAndQ.get(i);
         }
+
+        for (int i = 0; i < nAndQ.size(); i++) {
+            for (int j = i + 1; j < nAndQ.size(); j++) {
+                n.add(n_q.get(i));
+                q.add(n_q.get(i + 1));
+//                q.set(i, nAndQ.get(i+1));
+            }
+        }
+        for (int i = 0; i < n_q.size(); i++) {
+            for (int j = i +1; j < n_q.size(); j++) {
+                System.out.println(n_q.get(i).getClass());
+//                q.set(i, nAndQ.get(i+1));
+            }
+        }
+
+//        for(int i = 0; i < n_q.size(); i++){
+//            n[i] = (Array) n_q.get(i);
+//           q[i + 1] = (Array) n_q.get(i + 1);
+//        }
+
+//        System.out.println(nAndQ.size());
+//        n_q.stream().forEach(System.out::println);
+        List filterd = new ArrayList();
+        n.stream().flatMap(x -> Stream.of(x)).forEach(System.out::println);
+
+//                .filter(nn -> q.stream().anyMatch(qq -> qq.equals(nn))).collect(Collectors.toList());
+
+//        filterd.forEach(System.out::println);
+//        q.stream().forEach(System.out::println);
+        //todo use Collectors.groupingBy for the final solution
 //            List<String> answer = n.forEach(
 //                    x -> inputArray.stream().limit((int) x).collect(Collectors.toList()));
 //
