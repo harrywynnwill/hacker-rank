@@ -1,13 +1,10 @@
-package src;
+package java.hacker;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SparseArraySolution {
@@ -20,17 +17,7 @@ public class SparseArraySolution {
     public static void main(String[] args) throws FileNotFoundException {
         File input = new File("input/input10.txt");
         Scanner in = new Scanner(input);
-        int total = 0;
-        List nAndQ = new ArrayList();
-        List inputArray = new ArrayList();
-        while (in.hasNextLine()) {
-            if (in.hasNextInt()) {
-                nAndQ.add(Integer.valueOf(in.nextInt()));
-            } else {
-                inputArray.add(in.next());
-            }
-
-        }
+     //   parseFile(in);
 //            inputArray.add(in.next());
 
 //        n.stream().forEach(System.out::println);
@@ -39,19 +26,19 @@ public class SparseArraySolution {
         ArrayList n_q = new ArrayList();
         List n = new ArrayList();
         List q  = new ArrayList();
-        int count = 0;
-        for (int i = 0; i < nAndQ.size(); i++) {
-                n_q.add(inputArray.subList(count, count + (int) nAndQ.get(i)));
-                count += (int) nAndQ.get(i);
-        }
-
-        for (int i = 0; i < nAndQ.size(); i++) {
-            for (int j = i + 1; j < nAndQ.size(); j++) {
-                n.add(n_q.get(i));
-                q.add(n_q.get(i + 1));
-//                q.set(i, nAndQ.get(i+1));
-            }
-        }
+//        int count = 0;
+//        for (int i = 0; i < nAndQ.size(); i++) {
+//                n_q.add(inputArray.subList(count, count + (int) nAndQ.get(i)));
+//                count += (int) nAndQ.get(i);
+//        }
+//
+//        for (int i = 0; i < nAndQ.size(); i++) {
+//            for (int j = i + 1; j < nAndQ.size(); j++) {
+//                n.add(n_q.get(i));
+//                q.add(n_q.get(i + 1));
+////                q.set(i, nAndQ.get(i+1));
+//            }
+//        }
         for (int i = 0; i < n_q.size(); i++) {
             for (int j = i +1; j < n_q.size(); j++) {
                 System.out.println(n_q.get(i).getClass());
@@ -101,7 +88,20 @@ public class SparseArraySolution {
 //        System.out.println(total);
         }
 
-    }
+/*    protected static Pair<String[], Integer[]> parseFile(Scanner in) {
+        ArrayList<Integer> nAndQ = new ArrayList<>();
+        ArrayList<String> inputArray = new ArrayList<String>();
+        while (in.hasNextLine()) {
+            if (in.hasNextInt()) {
+                nAndQ.add(Integer.valueOf(in.nextInt()));
+            } else {
+                inputArray.add(in.next());
+            }
+        }
+        return new Pair<String[], Object[]>(nAndQ.toArray(new String[]), inputArray.toArray(new Integer[]));
+    }*/
+
+}
 
 
 
